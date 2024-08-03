@@ -1,5 +1,6 @@
 using Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Gameplay.Player
 {
@@ -11,13 +12,13 @@ namespace Gameplay.Player
 
         public PlayerStateMachine StateMachine { get; private set; }
 
-        [HideInInspector] public PlayerInput PlayerInput;
+        [HideInInspector] public Input.PlayerInput PlayerInput;
 
         protected override void Awake()
         {
             base.Awake();
 
-            PlayerInput = GetComponent<PlayerInput>();
+            PlayerInput = GetComponent<Input.PlayerInput>();
 
             StateMachine = new PlayerStateMachine(this);
         }
@@ -33,6 +34,8 @@ namespace Gameplay.Player
         {
             StateMachine.HandleInput();
             StateMachine.Update();
+
+            AimDirection = transform.position + GetMouseDirectionNormalized();
         }
 
         private void FixedUpdate()
@@ -76,6 +79,14 @@ namespace Gameplay.Player
 
             if (x == 0 && !facingRight)
                 Flip();
+        }
+
+        private Vector3 GetMouseDirectionNormalized()
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            mousePos.z = 0f;
+
+            return (mousePos - transform.position).normalized;
         }
     }
 }

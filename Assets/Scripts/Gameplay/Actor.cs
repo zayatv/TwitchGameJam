@@ -19,6 +19,8 @@ namespace Gameplay
         public Vector2 FacingDir { get; protected set; } = new Vector2(1, 0);
         protected bool facingRight = true;
 
+        public Vector2 AimDirection { get; protected set; } = new Vector2(1, 0);
+
         public Action OnFlipped;
 
         protected virtual void Awake()
@@ -35,12 +37,12 @@ namespace Gameplay
 
         public void ResetVelocity()
         {
-            Rigidbody.velocity = Vector2.zero;
+            Rigidbody.linearVelocity = Vector2.zero;
         }
 
         public void SetVelocity(float xVelocity, float yVelocity)
         {
-            Rigidbody.velocity = new Vector2(xVelocity, yVelocity);
+            Rigidbody.linearVelocity = new Vector2(xVelocity, yVelocity);
             FlipController(xVelocity);
         }
 

@@ -5,6 +5,8 @@ namespace Gameplay
 {
     public class CharacterSprite : MonoBehaviour
     {
+        public Transform AttackHolder;
+
         private HybridAnimancerComponent animator;
         private SpriteRenderer spriteRenderer;
 
