@@ -6,9 +6,21 @@ namespace Rework.Upgrades
     public class UpgradeCardSO : ScriptableObject
     {
         public string upgradeCardName;
-        public string upgradeCardDescription;
+        public string upgradeCardShortDescription;
+        public string upgradeCardLongDescription;
         public Sprite upgradeCardIcon;
         public int amountNeededToMerge;
-        
+        public UpgradeSO currentUpgrade;
+        public UpgradeCardSO nextUpgrade;
+
+        public void Equip()
+        {
+            currentUpgrade.Equip();
+        }
+
+        public void UnEquip()
+        {
+            currentUpgrade.UnEquip();
+        }
     }
 }
