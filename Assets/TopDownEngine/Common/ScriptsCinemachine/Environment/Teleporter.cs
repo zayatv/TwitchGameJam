@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
 using MoreMountains.Feedbacks;
+using MoreMountains.TopDownEngine.Upgrades;
+using Sirenix.OdinInspector;
+using UnityEngine.UI;
 
 namespace MoreMountains.TopDownEngine
 {	
@@ -127,6 +130,11 @@ namespace MoreMountains.TopDownEngine
 		/// the duration (in seconds) to apply after the fade in of the scene
 		[Tooltip("the duration (in seconds) to apply after the fade in of the scene")]
 		public float FinalDelay = 0.1f;
+
+		[MMInspectorGroup("Upgrades", true, 25)]
+		public bool SelectUpgradeCards;
+		[ShowIf(nameof(SelectUpgradeCards))] public int CardAmount;
+		[ShowIf(nameof(SelectUpgradeCards))] public bool StopTime;
 
 		public virtual float LocalTime => (TimeMode == TimeModes.Unscaled) ? Time.unscaledTime : Time.time;
 		public virtual float LocalDeltaTime => (TimeMode == TimeModes.Unscaled) ? Time.unscaledDeltaTime : Time.deltaTime;
@@ -417,6 +425,8 @@ namespace MoreMountains.TopDownEngine
 			{
 				MMTimeScaleEvent.Trigger(MMTimeScaleMethods.Unfreeze, 1f, 0f, false, 0f, false);
 			}
+			
+			ShowUpgradeCardUI();
 		}
 
 		/// <summary>
@@ -462,6 +472,26 @@ namespace MoreMountains.TopDownEngine
 			{
 				// draws an arrow to the destination room
 				MMDebug.DrawGizmoArrow(this.transform.position, TargetRoom.transform.position - this.transform.position, MMColors.Pink, 1f, 25f);
+			}
+		}
+
+		public void ShowUpgradeCardUI()
+		{
+			if (!SelectUpgradeCards) return;
+			
+			//if (StopTime) MMTimeScaleEvent.Trigger(MMTimeScaleMethods.For, 0f, 0f, false, 0f, true);
+			if (StopTime) GameManager.Instance.Pause(PauseMethods.NoPauseMenu);
+
+			var upgradeCards = UpgradeCardManager.Instance.GetRandomUpgradeCards(3);
+			
+			var cards = UpgradeCardsUIManager.Instance.SetUICards(upgradeCards);
+
+			foreach (var card in cards)
+			{
+				card.GetComponent<Button>().onClick.AddListener(() =>
+				{
+					GameManager.Instance.UnPause(PauseMethods.NoPauseMenu);
+				});
 			}
 		}
 	}

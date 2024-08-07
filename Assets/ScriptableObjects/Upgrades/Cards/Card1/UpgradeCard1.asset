@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2416c69ef3fe6bb42973750744b11734, type: 3}
+  m_Name: UpgradeCard1
+  m_EditorClassIdentifier: 
+  upgradeCardName: Card1
+  upgradeCardShortDescription: sdd
+  upgradeCardLongDescription: sadasdasdsad
+  upgradeCardIcon: {fileID: 21300012, guid: acc0224da40bd614eaa39fa27daa0b19, type: 3}
+  amountNeededToMerge: 6
+  currentUpgrade: {fileID: 11400000, guid: 4b7bdc9f5a95f0649baf4cbbcdf99315, type: 2}
+  nextUpgrade: {fileID: 11400000}
+  upgradeInventoryItem: {fileID: 11400000, guid: 7860b2f7cf2d21f4bb14272f89555614,
+    type: 2}

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823088f52ba32dd4d8de1bce89997386, type: 3}
   m_Name: Upgrade1
   m_EditorClassIdentifier: 
-  Health: 0
+  Health: 1
   MaxHealth: 0
-  HealthAmount: 0
+  HealthAmount: 1
   Defense: 0
   DefenseAmount: 0
   Attack: 0

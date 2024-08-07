@@ -43,7 +43,8 @@ namespace MoreMountains.TopDownEngine
 		Repaint,
 		TogglePause,
 		LoadNextScene,
-		PauseNoMenu
+		PauseNoMenu,
+		UpgradeCards
 	}
 
 	/// <summary>
@@ -349,6 +350,7 @@ namespace MoreMountains.TopDownEngine
 			{
 				_inventoryOpen = false;
 			}
+			
 			LevelManager.Instance.ToggleCharacterPause();
 		}
         
